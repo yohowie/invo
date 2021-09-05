@@ -10,4 +10,10 @@ $loader->registerDirs(
         $config->application->controllersDir,
         $config->application->modelsDir
     ]
-)->register();
+);
+
+$loader->registerNamespaces([
+    'Invo\Controllers' => $config->application->controllersDir
+]);
+
+$loader->register();
