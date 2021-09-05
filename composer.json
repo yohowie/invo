@@ -1,0 +1,11 @@
+{
+	"name" : "yohowie/invo",
+	"description" : "使用phalcon4默认目录结构创建invo项目",
+	"homepage" : "http://www.howie.cc",
+	"keywords" : [
+		"invo"
+	],
+	"require-dev": {
+		"phalcon/ide-stubs": "^v4.0"
+	}
+}
