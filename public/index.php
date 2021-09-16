@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Phalcon\Di\FactoryDefault;
+use Dotenv\Dotenv;
 
 error_reporting(E_ALL);
 
@@ -10,6 +11,11 @@ define('APP_PATH', BASE_PATH . '/app');
 
 try {
     require_once BASE_PATH .'/vendor/autoload.php';
+    
+    /**
+     * Load ENV variables
+     */
+    Dotenv::createImmutable(BASE_PATH)->safeLoad();
     
     /**
      * The FactoryDefault Dependency Injector automatically registers

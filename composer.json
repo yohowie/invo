@@ -3,9 +3,17 @@
 	"description" : "使用phalcon4默认目录结构创建invo项目",
 	"homepage" : "http://www.howie.cc",
 	"keywords" : [
+		"phalcon",
+		"framework",
+		"sample app",
 		"invo"
 	],
-	"require-dev": {
-		"phalcon/ide-stubs": "^v4.0"
+	"require" : {
+		"php" : ">=7.4",
+		"ext-phalcon" : "^4.1.2",
+		"vlucas/phpdotenv" : "^5.3.0"
+	},
+	"require-dev" : {
+		"phalcon/ide-stubs" : "^v4.0.0"
 	}
 }

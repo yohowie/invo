@@ -1,5 +1,6 @@
 .buildpath
 .project
 .settings/
-/vendor
-/cache
+vendor/
+cache/
+.env

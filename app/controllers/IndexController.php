@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Invo\Controllers;
 
-use Invo\Controllers\ControllerBase;
-
 class IndexController extends ControllerBase
 {
 
