@@ -1,3 +1,15 @@
+let Profile = {
+	validate: function () {
+		if (SignUp.check("name") === false) {
+			return false;
+		}
+		if (SignUp.check("email") === false) {
+			return false;
+		}
+		$("#profileForm")[0].submit();
+	}
+};
+
 var SignUp = {
 	check: function (id) {
 		if ($.trim($("#" + id)[0].value) === '') {
