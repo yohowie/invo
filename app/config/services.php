@@ -9,6 +9,7 @@ use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Session\Adapter\Stream as SessionAdapter;
+use Phalcon\Session\Bag;
 use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Url as UrlResolver;
 
@@ -42,18 +43,7 @@ $di->setShared('view', function () {
     $view->setViewsDir($config->application->viewsDir);
 
     $view->registerEngines([
-        '.volt' => function ($view) {
-            $config = $this->getConfig();
-
-            $volt = new VoltEngine($view, $this);
-
-            $volt->setOptions([
-                'path' => $config->application->cacheDir,
-                'separator' => '_'
-            ]);
-
-            return $volt;
-        },
+        '.volt' => 'volt',
         '.phtml' => PhpEngine::class
 
     ]);
@@ -122,6 +112,28 @@ $di->setShared('session', function () {
     return $session;
 });
 
+$di->setShared('volt', function () use ($di) {
+    $config = $this->getConfig();
+    
+    $view = $di->getShared('view');
+    $volt = new VoltEngine($view, $di);
+    $volt->setOptions([
+        'path' => $config->application->cacheDir .'volt/'
+    ]);
+    
+    $compiler = $volt->getCompiler();
+    $compiler->addFunction('is_a', 'is_a');
+    
+    return $volt;
+});
+
+$di->setShared('sessionBag', function () {
+    return new Bag('bag');
+});
+
+/**
+ * 设置默认命名空间
+ */
 $di->set('dispatcher', function () {
     $dispatcher = new Dispatcher();
     
@@ -129,3 +141,4 @@ $di->set('dispatcher', function () {
     
     return $dispatcher;
 });
+
