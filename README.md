@@ -13,14 +13,14 @@ master 分支将始终包含最新的稳定版本。如果你希望要检查当�
 * Phalcon >= 4.1
 * MySQL >= 5.7
 * 启用了 [mod_rewrite][2] 的 [Apache][3] Web Server 或 [Nginx][4] Web Server
-* 启用最新的稳定 Phalcon[5] 框架发布扩展 
+* 启用最新的稳定 [Phalcon][5] 框架发布扩展 
 
 ### 安装
 
-1. 将项目复制到本地环境 - git clone git@github.com:yohowie/invo.git
-2. 复制文件 cp .env.example .env
+1. 将项目复制到本地环境 - `git clone git@github.com:yohowie/invo.git`
+2. 复制文件 `cp .env.example .env`
 3. 使用您的数据库连接信息编辑 .env 文件
-4. 运行数据库迁移 vendor/bin/phalcon-migrations run
+4. 运行数据库迁移 `vendor/bin/phalcon-migrations run`
 
 [1]: https://phalcon.io/
 [2]: http://httpd.apache.org/docs/current/mod/mod_rewrite.html
