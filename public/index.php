@@ -11,12 +11,12 @@ define('APP_PATH', BASE_PATH . '/app');
 
 try {
     require_once BASE_PATH .'/vendor/autoload.php';
-    
+
     /**
      * Load ENV variables
      */
     Dotenv::createImmutable(BASE_PATH)->safeLoad();
-    
+
     /**
      * The FactoryDefault Dependency Injector automatically registers
      * the services that provide a full stack framework.
