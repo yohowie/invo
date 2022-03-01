@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Phalcon\Escaper;
+use Phalcon\Events\Manager as EventsManager;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
@@ -12,6 +13,8 @@ use Phalcon\Session\Adapter\Stream as SessionAdapter;
 use Phalcon\Session\Bag;
 use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Url as UrlResolver;
+use Invo\Plugins\NotFoundPlugin;
+use Invo\Plugins\SecurityPlugin;
 
 /**
  * Shared configuration service
@@ -114,16 +117,16 @@ $di->setShared('session', function () {
 
 $di->setShared('volt', function () use ($di) {
     $config = $this->getConfig();
-    
+
     $view = $di->getShared('view');
     $volt = new VoltEngine($view, $di);
     $volt->setOptions([
         'path' => $config->application->cacheDir .'volt/'
     ]);
-    
+
     $compiler = $volt->getCompiler();
     $compiler->addFunction('is_a', 'is_a');
-    
+
     return $volt;
 });
 
@@ -136,9 +139,15 @@ $di->setShared('sessionBag', function () {
  */
 $di->set('dispatcher', function () {
     $dispatcher = new Dispatcher();
+    $eventsManager = new EventsManager();
+
+    $eventsManager->attach('dispatch:beforeExecuteRoute', new SecurityPlugin());
     
+    $eventsManager->attach('dispatch:beforeException', new NotFoundPlugin());
+
     $dispatcher->setDefaultNamespace('Invo\Controllers');
-    
+    $dispatcher->setEventsManager($eventsManager);
+
     return $dispatcher;
 });
 

@@ -15,7 +15,8 @@ $loader->registerDirs(
 $loader->registerNamespaces([
     'Invo\Controllers' => $config->application->controllersDir,
     'Invo\Models' => $config->application->modelsDir,
-    'Invo\Forms' => $config->application->formsDir
+    'Invo\Forms' => $config->application->formsDir,
+    'Invo\Plugins' => $config->application->pluginsDir
 ]);
 
 $loader->register();
