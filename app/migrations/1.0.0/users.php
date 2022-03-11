@@ -46,7 +46,7 @@ class UsersMigration_100 extends Migration
                     [
                         'type' => Column::TYPE_VARCHAR,
                         'notNull' => true,
-                        'size' => 40,
+                        'size' => 62,
                         'after' => 'username'
                     ]
                 ),
@@ -80,8 +80,9 @@ class UsersMigration_100 extends Migration
                 new Column(
                     'active',
                     [
-                        'type' => Column::TYPE_INTEGER,
+                        'type' => Column::TYPE_TINYINTEGER,
                         'notNull' => true,
+                        'unsigned' => true,
                         'size' => 1,
                         'after' => 'created_at'
                     ]
@@ -89,6 +90,8 @@ class UsersMigration_100 extends Migration
             ],
             'indexes' => [
                 new Index('PRIMARY', ['id'], 'PRIMARY'),
+                new Index('USERNAME', ['username'], 'UNIQUE'),
+                new Index('EMAIL', ['email'], 'UNIQUE')
             ],
             'options' => [
                 'TABLE_TYPE' => 'BASE TABLE',
