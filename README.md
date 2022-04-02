@@ -28,7 +28,7 @@ master 分支将始终包含最新的稳定版本。如果你希望要检查当�
 
 ## 许可
 
-Vökuró 是根据 MIT License 许可的开源软件。
+Invo 是根据 MIT License 许可的开源软件。
 
 [1]: https://phalcon.io/
 [2]: http://httpd.apache.org/docs/current/mod/mod_rewrite.html

@@ -22,6 +22,11 @@ return new Config([
         'migrationsDir'     => APP_PATH . '/migrations/',
         'migrationsTsBased' => false,
         'logInDb'           => true,
-        'exportDataFromTables' => ['users']
+        'exportDataFromTables' => [
+            'companies',
+            'product_types',
+            'products',
+            'users'
+        ]
     ]
 ]);
